@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
-        // Get the FirebaseAuth instance
         auth = FirebaseAuth.getInstance()
 
         setContent {
@@ -36,11 +35,8 @@ class MainActivity : ComponentActivity() {
 
     private fun signInWithGithub() {
         val provider = OAuthProvider.newBuilder("github.com")
-
-        // Optionally add additional scopes
+    
         provider.addCustomParameter("allow_signup", "false")
-
-        // Start the sign-in flow
         auth.startActivityForSignInWithProvider(this, provider.build())
             .addOnSuccessListener { authResult ->
                 val user = authResult.user
@@ -62,7 +58,7 @@ class MainActivity : ComponentActivity() {
                 finish()
             }
             .addOnFailureListener { e ->
-                // Handle failure
+               
                 Toast.makeText(this, "Sign-in failed: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
@@ -72,9 +68,9 @@ class MainActivity : ComponentActivity() {
     fun Buttons() {
         Box(
             modifier = Modifier
-                .fillMaxSize() // Fill the entire screen
-                .padding(16.dp), // Optional padding around the box
-            contentAlignment = Alignment.Center // Center the content
+                .fillMaxSize() 
+                .padding(16.dp), 
+            contentAlignment = Alignment.Center 
         ) {
             Button(onClick = { signInWithGithub() }) {
                 Text("Github Sign In")
