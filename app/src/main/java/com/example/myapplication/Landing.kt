@@ -44,7 +44,7 @@ class Landing: ComponentActivity() {
                     selected = selectedTabIndex == 0,
                     onClick = {
                         selectedTabIndex = 0
-                        navController.navigate("home") // Navigate to Home
+                        navController.navigate("home") 
                     },
                     text = { Text("Home") }
                 )
@@ -52,7 +52,7 @@ class Landing: ComponentActivity() {
                     selected = selectedTabIndex == 1,
                     onClick = {
                         selectedTabIndex = 1
-                        navController.navigate("info") // Navigate to Profile
+                        navController.navigate("info")
                     },
                     text = { Text("Info") }
                 )
@@ -60,13 +60,11 @@ class Landing: ComponentActivity() {
                     selected = selectedTabIndex == 2,
                     onClick = {
                         selectedTabIndex = 2
-                        navController.navigate("settings") // Navigate to Settings
+                        navController.navigate("settings")
                     },
                     text = { Text("Settings") }
                 )
             }
-
-            // Navigation host for different screens
             NavHost(navController, startDestination = "home") {
                 composable("home") { HomeScreen(email, username, githubId) }
                 composable("info") {InfoScreen(email, username, githubId) }
